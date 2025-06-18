@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 const Sidebar = () => {
   return (
@@ -8,7 +9,7 @@ const Sidebar = () => {
     <div>
       <div className="brand-logo d-flex align-items-center justify-content-between">
         <a href="" className="text-nowrap logo-img">
-          <img src="../assets/images/logos/logo-white.svg" width={180}  alt />
+          <img src="../assets/images/logos/logo-white.svg" width={180}/>
         </a>
         <div className="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
           <i className="ti ti-x fs-8" />
@@ -22,24 +23,24 @@ const Sidebar = () => {
             <span className="hide-menu">Home</span>
           </li>
           <li className="sidebar-item">
-            <a className="sidebar-link text-decoration-none" href="#">
+            <Link className="sidebar-link text-decoration-none" to="/">
               <span>
                 <i className="ti ti-layout-dashboard" />
               </span>
               <span className="hide-menu">Dashboard</span>
-            </a>
+            </Link>
           </li>
           <li className="nav-small-cap">
             <i className="ti ti-dots nav-small-cap-icon fs-4" />
             <span className="hide-menu">UI COMPONENTS</span>
           </li>
           <li className="sidebar-item">
-            <a className="sidebar-link text-decoration-none" href="#" aria-expanded="false">
+            <Link className="sidebar-link text-decoration-none" to="/form">
               <span>
                 <i className="ti ti-article" />
               </span>
               <span className="hide-menu">Add Employee</span>
-            </a>
+            </Link>
           </li>
           <li className="nav-small-cap">
             <i className="ti ti-dots nav-small-cap-icon fs-4" />
