@@ -22,7 +22,7 @@ const Sidebar = () => {
             <span className="hide-menu">Home</span>
           </li>
           <li className="sidebar-item">
-            <a className="sidebar-link text-decoration-none" href="#" aria-expanded="false">
+            <a className="sidebar-link text-decoration-none" href="#">
               <span>
                 <i className="ti ti-layout-dashboard" />
               </span>

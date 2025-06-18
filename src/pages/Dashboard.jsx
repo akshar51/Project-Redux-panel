@@ -116,6 +116,12 @@ const Dashboard = () => {
 			columns={columns}
 			data={data}
 			selectableRows
+      pagination
+      highlightOnHover
+      pointerOnHover
+      responsive
+      fixedHeader
+      fixedHeaderScrollHeight="300px"
 		/>
       </div>
       {/* Table end */}

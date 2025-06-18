@@ -12,3 +12,7 @@
 header{
   border-bottom: 1px solid rgb(48, 48, 48);
 }
+
+form{
+  color: white !important;
+}
