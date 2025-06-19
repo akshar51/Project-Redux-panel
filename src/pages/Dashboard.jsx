@@ -98,11 +98,11 @@ const Dashboard = () => {
           <div className="container-fluid">
             <div className="row gap-3">
               <div className="col-md-4 bg-danger">
-                <h1>25</h1>
+                <h1 className="ps-2">{list.length}</h1>
                 <p>Total Employee</p>
               </div>
               <div className="col-md-4 bg-gradient">
-                <h1>25</h1>
+                <h1 className="ps-2">25</h1>
                 <p>Total Task Assigned</p>
               </div>
             </div>
