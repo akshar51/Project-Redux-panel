@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Footer from '../components/Footer'
-import { useDispatch } from "react-redux";
-import { addEmp } from "../redux/employeeSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addEmp, editData } from "../redux/employeeSlice";
 import { useNavigate } from "react-router";
 
 
 const EmployeeForm = () => {
 
+  
   const [obj, setObj] = useState({});
   const dispatch = useDispatch()
   const navi = useNavigate();
+  let {editData} = useSelector(state => state.employeeData)
 
+  useEffect(() => {
+    setObj({...editData})
+  }, [editData]);
 
   const handleChange = (e)=>{
     const {name,value} = e.target;

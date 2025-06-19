@@ -20,46 +20,38 @@ const Sidebar = () => {
         <ul id="sidebarnav">
           <li className="nav-small-cap">
             <i className="ti ti-dots nav-small-cap-icon fs-4" />
-            <span className="hide-menu">Home</span>
+            <span className="hide-menu text-white">Home</span>
           </li>
           <li className="sidebar-item">
             <Link className="sidebar-link text-decoration-none" to="/">
               <span>
-                <i className="ti ti-layout-dashboard" />
+                <i className="ti ti-layout-dashboard text-white" />
               </span>
-              <span className="hide-menu">Dashboard</span>
+              <span className="hide-menu text-white">Dashboard</span>
             </Link>
           </li>
           <li className="nav-small-cap">
             <i className="ti ti-dots nav-small-cap-icon fs-4" />
-            <span className="hide-menu">UI COMPONENTS</span>
+            <span className="hide-menu text-white">EMPLOYEE</span>
           </li>
           <li className="sidebar-item">
             <Link className="sidebar-link text-decoration-none" to="/form">
               <span>
-                <i className="ti ti-article" />
+                <i className="ti ti-article text-white" />
               </span>
-              <span className="hide-menu">Add Employee</span>
+              <span className="hide-menu text-white">Add Employee</span>
             </Link>
           </li>
           <li className="nav-small-cap">
             <i className="ti ti-dots nav-small-cap-icon fs-4" />
-            <span className="hide-menu">AUTH</span>
+            <span className="hide-menu text-white">AUTH</span>
           </li>
           <li className="sidebar-item">
             <a className="sidebar-link text-decoration-none" href="#">
               <span>
-                <i className="ti ti-login" />
+                <i className="ti ti-login text-white" />
               </span>
-              <span className="hide-menu">Login</span>
-            </a>
-          </li>
-          <li className="sidebar-item">
-            <a className="sidebar-link text-decoration-none" href="#">
-              <span>
-                <i className="ti ti-user-plus" />
-              </span>
-              <span className="hide-menu">Register</span>
+              <span className="hide-menu text-white">Logout</span>
             </a>
           </li>
         </ul>

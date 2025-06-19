@@ -3,9 +3,14 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import DataTable from "react-data-table-component";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteEmp,setEdit } from "../redux/employeeSlice";
+import { useNavigate } from "react-router";
 
-const columns = [
+
+
+const Dashboard = () => {
+  const columns = [
   {
     name: "Sr No.",
     selector: (row, index) => index + 1,
@@ -14,10 +19,12 @@ const columns = [
   {
     name: "Name",
     selector: (row) => row.name,
+    width : "150px"
   },
   {
     name: "Department",
     selector: (row) => row.department,
+    width:"150px"
   },
   {
     name: "Salary",
@@ -54,6 +61,7 @@ const columns = [
   {
     name: "Tasks",
     selector: (row) => row.task,
+    width : "150px"
   },
 
   {
@@ -62,8 +70,8 @@ const columns = [
       return (
         <>
           <div className="d-flex justify-content-start align-items-center gap-2">
-            <button className="btn btn-warning me-2">Edit</button>
-            <button className="btn btn-danger">Delete</button>
+            <button className="btn btn-warning me-2" onClick={()=>handleEdit(row)}>Edit</button>
+            <button className="btn btn-danger" onClick={()=>handleDelete(row.id)}>Delete</button>
           </div>
         </>
       )
@@ -72,9 +80,19 @@ const columns = [
   },
 ];
 
-const Dashboard = () => {
   const list = useSelector((state) => state.employeeData.list);
+  const dispatch = useDispatch()
+  const navi = useNavigate();
 
+
+  function handleDelete(id){
+    dispatch(deleteEmp(id))
+  }
+
+  function handleEdit(id){
+    dispatch(setEdit(id))
+    navi("/form")
+  }
 
   return (
     <>
