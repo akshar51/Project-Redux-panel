@@ -1,8 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Footer from '../components/Footer'
+import { useDispatch } from "react-redux";
+import { addEmp } from "../redux/employeeSlice";
+import { useNavigate } from "react-router";
+
+
 const EmployeeForm = () => {
+
+  const [obj, setObj] = useState({});
+  const dispatch = useDispatch()
+  const navi = useNavigate();
+
+
+  const handleChange = (e)=>{
+    const {name,value} = e.target;
+    let data = {...obj,[name]:value}
+    setObj(data);
+  }
+
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    dispatch(addEmp({...obj,id : Date.now()}))
+    console.log(obj)
+    setObj({});
+    navi("/")
+  }
+
   return (
     <>
       <div
@@ -29,7 +54,7 @@ const EmployeeForm = () => {
             <div className="row">
               <h1 className="">Employee Detail Form : </h1>
               <div className="col-md-6">
-                <form className="my-5">
+                <form className="my-5" method="post" onSubmit={handleSubmit}>
 
                   {/* Name */}
                   <div className="mb-3">
@@ -41,6 +66,8 @@ const EmployeeForm = () => {
                       className="form-control"
                       id="name"
                       name="name"
+                      onChange={handleChange}
+                      value={obj.name || ""}
                     />
                   </div>
 
@@ -54,6 +81,8 @@ const EmployeeForm = () => {
                       className="form-control"
                       id="department"
                       name="department"
+                      onChange={handleChange}
+                      value={obj.department || ""}
                     />
                   </div>
 
@@ -67,6 +96,8 @@ const EmployeeForm = () => {
                       className="form-control"
                       id="salary"
                       name="salary"
+                      onChange={handleChange}
+                      value={obj.salary || ""}
                     />
                   </div>
 
@@ -80,6 +111,8 @@ const EmployeeForm = () => {
                       className="form-control"
                       id="bonus"
                       name="bonus"
+                      onChange={handleChange}
+                      value={obj.bonus || ""}
                     />
                   </div>
 
@@ -93,6 +126,8 @@ const EmployeeForm = () => {
                       className="form-control"
                       id="hra"
                       name="hra"
+                      onChange={handleChange}
+                      value={obj.hra || ""}
                     />
                   </div>
 
@@ -106,6 +141,8 @@ const EmployeeForm = () => {
                       className="form-control"
                       id="da"
                       name="da"
+                      onChange={handleChange}
+                      value={obj.da || ""}
                     />
                   </div>
 
@@ -119,6 +156,8 @@ const EmployeeForm = () => {
                       className="form-control"
                       id="ta"
                       name="ta"
+                      onChange={handleChange}
+                      value={obj.ta || ""}
                     />
                   </div>
 
@@ -132,6 +171,8 @@ const EmployeeForm = () => {
                       className="form-control"
                       id="pf"
                       name="pf"
+                      onChange={handleChange}
+                      value={obj.pf || ""}
                     />
                   </div>
 
@@ -145,6 +186,8 @@ const EmployeeForm = () => {
                       className="form-control"
                       id="pt"
                       name="pt"
+                      onChange={handleChange}
+                      value={obj.pt || ""}
                     />
                   </div>
 
@@ -158,6 +201,8 @@ const EmployeeForm = () => {
                       className="form-control"
                       id="tax"
                       name="tax"
+                      onChange={handleChange}
+                      value={obj.tax || ""}
                     />
                   </div>
 
@@ -171,6 +216,8 @@ const EmployeeForm = () => {
                       className="form-control"
                       id="task"
                       name="task"
+                      onChange={handleChange}
+                      value={obj.task || ""}
                     />
                   </div>
                   <button type="submit" className="btn btn-primary">

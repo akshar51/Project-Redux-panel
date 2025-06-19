@@ -8,10 +8,7 @@ const initialState = {
 const employeeSlice = createSlice({
     name : "employee",
     initialState,
-    reducers : {
-      addEmp : (state,action)=>{},
-      deleteEmp : (state,action)=>{},
-      editEmp : (state,action)=>{},  
+    reducers : { 
     }
 })
 
