@@ -47,7 +47,7 @@ const Sidebar = () => {
             <span className="hide-menu">AUTH</span>
           </li>
           <li className="sidebar-item">
-            <a className="sidebar-link text-decoration-none" href="#" aria-expanded="false">
+            <a className="sidebar-link text-decoration-none" href="#">
               <span>
                 <i className="ti ti-login" />
               </span>
@@ -55,7 +55,7 @@ const Sidebar = () => {
             </a>
           </li>
           <li className="sidebar-item">
-            <a className="sidebar-link text-decoration-none" href="#" aria-expanded="false">
+            <a className="sidebar-link text-decoration-none" href="#">
               <span>
                 <i className="ti ti-user-plus" />
               </span>
