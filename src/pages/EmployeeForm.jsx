@@ -3,7 +3,7 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import Footer from '../components/Footer'
 import { useDispatch, useSelector } from "react-redux";
-import { addEmp, editData } from "../redux/employeeSlice";
+import { addEmp, editData,setError } from "../redux/employeeSlice";
 import { useNavigate } from "react-router";
 
 
@@ -13,7 +13,7 @@ const EmployeeForm = () => {
   const [obj, setObj] = useState({});
   const dispatch = useDispatch()
   const navi = useNavigate();
-  let {editData} = useSelector(state => state.employeeData)
+  let {editData,error} = useSelector(state => state.employeeData)
 
   useEffect(() => {
     setObj({...editData})
@@ -27,9 +27,30 @@ const EmployeeForm = () => {
 
   const handleSubmit = (e)=>{
     e.preventDefault();
+
+    if(!validation()) return;
+
     dispatch(addEmp({...obj,id : Date.now()}))
+    dispatch(setError({}))
     setObj({});
     navi("/")
+  }
+
+  const validation = ()=>{
+    let error = {};
+    if(!obj.name) error.name = "Name is required"
+    if(!obj.department) error.department = "Department is required"
+    if(!obj.salary) error.salary = "Salary is required"
+    if(!obj.bonus) error.bonus = "Bonus is required"
+    if(!obj.hra) error.hra = "HRA is required"
+    if(!obj.da) error.da = "DA is required"
+    if(!obj.ta) error.ta = "TA is required"
+    if(!obj.pf) error.pf = "PF is required"
+    if(!obj.pt) error.pt = "PT is required"
+    if(!obj.tax) error.tax = "Tax is required"
+    if(!obj.task) error.task = "Task is required"
+    dispatch(setError(error))
+    return Object.keys(error).length === 0;
   }
 
   return (
@@ -73,6 +94,9 @@ const EmployeeForm = () => {
                       onChange={handleChange}
                       value={obj.name || ""}
                     />
+                    {
+                      error.name && <span className="text-danger fw-bold">{error.name}</span>
+                    }
                   </div>
 
                   {/* Department */}
@@ -88,6 +112,9 @@ const EmployeeForm = () => {
                       onChange={handleChange}
                       value={obj.department || ""}
                     />
+                    {
+                      error.department && <span className="text-danger fw-bold">{error.department}</span>
+                    }
                   </div>
 
                   {/* Salary */}
@@ -103,6 +130,9 @@ const EmployeeForm = () => {
                       onChange={handleChange}
                       value={obj.salary || ""}
                     />
+                    {
+                      error.salary && <span className="text-danger fw-bold">{error.salary}</span>
+                    }
                   </div>
 
                   {/* Bonus */}
@@ -118,6 +148,9 @@ const EmployeeForm = () => {
                       onChange={handleChange}
                       value={obj.bonus || ""}
                     />
+                    {
+                      error.bonus && <span className="text-danger fw-bold">{error.bonus}</span>
+                    }
                   </div>
 
                   {/* HRA */}
@@ -133,6 +166,9 @@ const EmployeeForm = () => {
                       onChange={handleChange}
                       value={obj.hra || ""}
                     />
+                    {
+                      error.hra && <span className="text-danger fw-bold">{error.hra}</span>
+                    }
                   </div>
 
                   {/* DA */}
@@ -148,6 +184,9 @@ const EmployeeForm = () => {
                       onChange={handleChange}
                       value={obj.da || ""}
                     />
+                    {
+                      error.da && <span className="text-danger fw-bold">{error.da}</span>
+                    }
                   </div>
 
                   {/* TA */}
@@ -163,6 +202,9 @@ const EmployeeForm = () => {
                       onChange={handleChange}
                       value={obj.ta || ""}
                     />
+                    {
+                      error.ta && <span className="text-danger fw-bold">{error.ta}</span>
+                    }
                   </div>
 
                   {/* PF */}
@@ -178,6 +220,9 @@ const EmployeeForm = () => {
                       onChange={handleChange}
                       value={obj.pf || ""}
                     />
+                    {
+                      error.pf && <span className="text-danger fw-bold">{error.pf}</span>
+                    }
                   </div>
 
                   {/* PT */}
@@ -193,6 +238,9 @@ const EmployeeForm = () => {
                       onChange={handleChange}
                       value={obj.pt || ""}
                     />
+                    {
+                      error.pt && <span className="text-danger fw-bold">{error.pt}</span>
+                    }
                   </div>
 
                   {/* Tax */}
@@ -208,6 +256,9 @@ const EmployeeForm = () => {
                       onChange={handleChange}
                       value={obj.tax || ""}
                     />
+                    {
+                      error.tax && <span className="text-danger fw-bold">{error.tax}</span>
+                    }
                   </div>
 
                   {/* Task */}
@@ -223,6 +274,9 @@ const EmployeeForm = () => {
                       onChange={handleChange}
                       value={obj.task || ""}
                     />
+                    {
+                      error.task && <span className="text-danger fw-bold">{error.task}</span>
+                    }
                   </div>
                   <button type="submit" className="btn btn-primary">
                     Submit

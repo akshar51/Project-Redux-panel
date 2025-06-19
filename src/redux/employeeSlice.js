@@ -5,6 +5,7 @@ const initialState = {
     list : [],
     editIdx : null,
     editData : {},
+    error : {},
 }
 
 
@@ -36,8 +37,12 @@ export const employeeSlice = createSlice({
             state.editIdx = action.payload.id
             state.editData = action.payload
         },
+        setError : (state,action)=>{
+            state.error = action.payload 
+        },
+
     }
 })
 
-export const {addEmp,deleteEmp,setEdit,editData} = employeeSlice.actions;
+export const {addEmp,deleteEmp,setEdit,editData,setError} = employeeSlice.actions;
 export default employeeSlice.reducer
