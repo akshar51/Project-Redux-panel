@@ -23,7 +23,6 @@ const EmployeeForm = () => {
   const handleSubmit = (e)=>{
     e.preventDefault();
     dispatch(addEmp({...obj,id : Date.now()}))
-    console.log(obj)
     setObj({});
     navi("/")
   }
