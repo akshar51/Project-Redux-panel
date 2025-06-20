@@ -42,6 +42,14 @@ const Sidebar = () => {
               <span className="hide-menu text-white">Add Employee</span>
             </Link>
           </li>
+          <li className="sidebar-item">
+            <Link className="sidebar-link text-decoration-none" to="/task">
+              <span>
+                <i className="ti ti-plus text-white" />
+              </span>
+              <span className="hide-menu text-white">Assign Task</span>
+            </Link>
+          </li>
           <li className="nav-small-cap">
             <i className="ti ti-dots nav-small-cap-icon fs-4" />
             <span className="hide-menu text-white">AUTH</span>

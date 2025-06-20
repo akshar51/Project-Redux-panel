@@ -50,6 +50,7 @@ const EmployeeForm = () => {
     if(!obj.pf) error.pf = "PF is required"
     if(!obj.pt) error.pt = "PT is required"
     if(!obj.tax) error.tax = "Tax is required"
+    if(!obj.image) error.image = "Image is required"
     if(!obj.task) error.task = "Task is required"
     dispatch(setError(error))
     return Object.keys(error).length === 0;
@@ -262,7 +263,7 @@ const EmployeeForm = () => {
                       error.tax && <span className="text-danger fw-bold">{error.tax}</span>
                     }
                   </div>
-
+                    
                   {/* Task */}
                   <div className="mb-3">
                     <label htmlFor="task" className="form-label text-white">
@@ -280,6 +281,24 @@ const EmployeeForm = () => {
                       error.task && <span className="text-danger fw-bold">{error.task}</span>
                     }
                   </div>
+
+                  {/* Image */}
+                  <div className="mb-3">
+                    <label htmlFor="image" className="form-label text-white">
+                      Profile Image : 
+                    </label>
+                    <input
+                      type="file"
+                      className="form-control"
+                      id="image"
+                      name="image"
+                      onChange={handleChange}
+                    />
+                    {
+                      error.image && <span className="text-danger fw-bold">{error.image}</span>
+                    }
+                  </div>  
+
                   <button type="submit" className="btn btn-primary">
                     Submit
                   </button>
