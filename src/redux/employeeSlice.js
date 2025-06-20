@@ -6,6 +6,7 @@ const initialState = {
     editIdx : null,
     editData : {},
     error : {},
+    search : '',
 }
 
 
@@ -28,7 +29,7 @@ export const employeeSlice = createSlice({
             else{
                 state.list.push(action.payload)
             }
-
+            
         },
         deleteEmp : (state,action)=>{
             state.list = state.list.filter(item=>item.id !== action.payload)
@@ -40,9 +41,12 @@ export const employeeSlice = createSlice({
         setError : (state,action)=>{
             state.error = action.payload 
         },
+        search : (state,action)=>{
+            state.search = action.payload
+       },
 
     }
 })
 
-export const {addEmp,deleteEmp,setEdit,editData,setError} = employeeSlice.actions;
+export const {addEmp,deleteEmp,setEdit,editData,setError,search} = employeeSlice.actions;
 export default employeeSlice.reducer

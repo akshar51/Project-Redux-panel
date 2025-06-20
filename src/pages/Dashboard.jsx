@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import DataTable from "react-data-table-component";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteEmp,setEdit } from "../redux/employeeSlice";
+import { deleteEmp,setEdit,search } from "../redux/employeeSlice";
 import { useNavigate } from "react-router";
 
 
@@ -81,6 +81,11 @@ const Dashboard = () => {
 ];
 
   const list = useSelector((state) => state.employeeData.list);
+  const searchValue = useSelector(state=> state.employeeData.search)
+
+  const filterList = list.filter((item)=>item.name.toLowerCase().includes(searchValue.toLowerCase()))
+
+
   const dispatch = useDispatch()
   const navi = useNavigate();
 
@@ -93,6 +98,8 @@ const Dashboard = () => {
     dispatch(setEdit(id))
     navi("/form")
   }
+
+  
 
   return (
     <>
@@ -135,6 +142,8 @@ const Dashboard = () => {
                 type="text"
                 placeholder="Search employee . . . ."
                 className="ms-auto px-3 py-2 rounded bg-transparent border border-1 text-white d-block w-25"
+                onChange={(e)=>dispatch(search(e.target.value))}
+                value={searchValue}
               />
             </div>
             {/* Search end */}
@@ -143,7 +152,7 @@ const Dashboard = () => {
             <div className="eTable my-3 rounded" style={{ overflowX: "auto" }}>
               <DataTable
                 columns={columns}
-                data={list}
+                data={filterList}
                 selectableRows
                 pagination
                 highlightOnHover

@@ -36,6 +36,8 @@ const EmployeeForm = () => {
     navi("/")
   }
 
+  
+
   const validation = ()=>{
     let error = {};
     if(!obj.name) error.name = "Name is required"
