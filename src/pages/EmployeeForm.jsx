@@ -14,15 +14,34 @@ const EmployeeForm = () => {
   const dispatch = useDispatch()
   const navi = useNavigate();
   let {editData,error} = useSelector(state => state.employeeData)
+ 
 
   useEffect(() => {
     setObj({...editData})
   }, [editData]);
 
   const handleChange = (e)=>{
-    const {name,value} = e.target;
-    let data = {...obj,[name]:value}
-    setObj(data);
+    const {name,value,files} = e.target;
+
+    if(name === "image"){
+      let image = files[0];
+      let reader = new FileReader();
+
+      reader.onload = ()=>{
+        let fileData = {
+          name : image.name,
+          type : image.type,
+          url : reader.result,
+        }
+        let data = {...obj,image : fileData}
+        setObj(data);
+      }
+      reader.readAsDataURL(image)
+    }
+    else{
+      let data = {...obj,[name]:value}
+      setObj(data);
+    }
   }
 
   const handleSubmit = (e)=>{
@@ -51,7 +70,7 @@ const EmployeeForm = () => {
     if(!obj.pt) error.pt = "PT is required"
     if(!obj.tax) error.tax = "Tax is required"
     if(!obj.image) error.image = "Image is required"
-    if(!obj.task) error.task = "Task is required"
+    // if(!obj.task) error.task = "Task is required"
     dispatch(setError(error))
     return Object.keys(error).length === 0;
   }
@@ -265,7 +284,7 @@ const EmployeeForm = () => {
                   </div>
                     
                   {/* Task */}
-                  <div className="mb-3">
+                  {/* <div className="mb-3">
                     <label htmlFor="task" className="form-label text-white">
                       Task : 
                     </label>
@@ -280,7 +299,7 @@ const EmployeeForm = () => {
                     {
                       error.task && <span className="text-danger fw-bold">{error.task}</span>
                     }
-                  </div>
+                  </div> */}
 
                   {/* Image */}
                   <div className="mb-3">

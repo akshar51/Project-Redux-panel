@@ -2,15 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialState = {
-    employee : []
+    user : []
 }
 
-const employeeSlice = createSlice({
-    name : "employee",
+const userSlice = createSlice({
+    name : "user",
     initialState,
     reducers : { 
     }
 })
 
-export const {addEmp,deleteEmp,editEmp} = employeeSlice.actions;
-export default employeeSlice.reducer
+// export const {addEmp,deleteEmp,editEmp} = userSlice.actions;
+export default userSlice.reducer

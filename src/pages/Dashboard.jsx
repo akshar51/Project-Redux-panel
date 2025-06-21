@@ -58,11 +58,11 @@ const Dashboard = () => {
     name: "Tax",
     selector: (row) => row.tax,
   },
-  {
-    name: "Tasks",
-    selector: (row) => row.task,
-    width : "150px"
-  },
+  // {
+  //   name: "Tasks",
+  //   selector: (row) => row.task,
+  //   width : "150px"
+  // },
 
   {
     name: "Action",
@@ -82,7 +82,7 @@ const Dashboard = () => {
 
   const list = useSelector((state) => state.employeeData.list);
   const searchValue = useSelector(state=> state.employeeData.search)
-
+  console.log(list)
   const filterList = list.filter((item)=>item.name.toLowerCase().includes(searchValue.toLowerCase()))
 
 
