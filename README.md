@@ -1,12 +1,53 @@
-# React + Vite
+from pathlib import Path
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+readme_content = """# 🧑‍💼 Redux Employee Management Panel
 
-Currently, two official plugins are available:
+A role-based employee management system built with **React**, **Redux**, and **Bootstrap**, featuring:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Manager and employee login.
+- Employee CRUD operations (by Manager).
+- Task assignment and status.
+- Salary breakdown.
+- LocalStorage persistence.
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🔐 Authentication
+- Simple login by name and role (Manager/Employee).
+- Login data validated from `localStorage`.
+
+### 👩‍💼 Manager Dashboard
+- Add/Edit/Delete employees.
+- Assign tasks to employees via modal form.
+- View all employee details and tasks.
+
+### 👷 Employee Page
+- View own profile, department, role.
+- View assigned tasks and their statuses.
+- View salary breakdown (HRA, DA, TA, PF, etc.)
+
+### 💾 Local Storage
+- Employee data and logged-in user are stored in `localStorage` for persistence.
+- Data remains after refresh unless cleared manually.
+
+## 🛠️ Tech Stack
+
+- **React** – UI Library
+- **Redux Toolkit** – State management
+- **React Router** – Navigation
+- **Bootstrap 5** – Styling and layout
+- **LocalStorage** – Data persistence
+
+## 🏗️ Project Structure
+
+```bash
+src/
+│
+├── components/          # Sidebar, Navbar, Footer components
+├── pages/               # Main pages (Dashboard, EmployeeForm, EmployeePage, Task, Salary)
+├── redux/
+│   ├── store.js         # Redux store setup
+│   └── employeeSlice.js # Reducers and actions for employees
+├── App.js               # Main route manager
+├── index.js             # React entry point
+└── Login.js             # Login screen
