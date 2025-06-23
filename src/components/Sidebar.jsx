@@ -1,7 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Sidebar = () => {
+
+  const navi = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("loggedInUser");
+    navi("/")
+  };
+
   return (
     <>
       <aside className="left-sidebar">
@@ -23,7 +30,7 @@ const Sidebar = () => {
             <span className="hide-menu text-white">Home</span>
           </li>
           <li className="sidebar-item">
-            <Link className="sidebar-link text-decoration-none" to="/">
+            <Link className="sidebar-link text-decoration-none" to="/dashboard">
               <span>
                 <i className="ti ti-layout-dashboard text-white" />
               </span>
@@ -55,12 +62,12 @@ const Sidebar = () => {
             <span className="hide-menu text-white">AUTH</span>
           </li>
           <li className="sidebar-item">
-            <a className="sidebar-link text-decoration-none" href="#">
+            <div className="sidebar-link text-decoration-none" onClick={handleLogout}>
               <span>
                 <i className="ti ti-login text-white" />
               </span>
               <span className="hide-menu text-white">Logout</span>
-            </a>
+            </div>
           </li>
         </ul>
       </nav>

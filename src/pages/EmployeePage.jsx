@@ -1,7 +1,18 @@
 import React from "react";
-import { Link } from "react-router";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 const EmployeePage = () => {
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  const employeeList = JSON.parse(localStorage.getItem("employeeList")) || [];
+  const employee = employeeList.find((emp) => emp.id === user?.id);
+  const navi = useNavigate();
+  
+  const handleLogout = () => {
+    localStorage.removeItem("loggedInUser");
+    navi("/")
+  };
+
   return (
     <>
       <div id="wrapper">
@@ -17,7 +28,7 @@ const EmployeePage = () => {
           </div>
           <div className="list-group list-group-flush">
             <Link
-              to="/"
+              to="/employee"
               className="list-group-item list-group-item-action py-3 ripple active"
             >
               <i className="ti ti-user-circle" /> My Profile
@@ -28,6 +39,9 @@ const EmployeePage = () => {
             >
               <i className="ti ti-coin-rupee text-primary" /> Salary
             </Link>
+            <div className="list-group-item list-group-item-action py-3 ripple fw-bold text-primary" onClick={handleLogout} >
+              <i className="ti ti-login text-primary" /> Logout
+            </div>
           </div>
         </div>
         {/* /#sidebar-wrapper */}
@@ -41,7 +55,9 @@ const EmployeePage = () => {
               >
                 <i className="fas fa-bars" />
               </button>
-              <h4 className="text-black ms-auto py-2">Hello, Akshar</h4>
+              <h4 className="text-black ms-auto py-2">
+                Hello, {employee.name}
+              </h4>
             </div>
           </nav>
           <div className="container-fluid main-content px-3">
@@ -58,13 +74,13 @@ const EmployeePage = () => {
                     <div className="row align-items-center mb-4 flex-column p-3">
                       <div className="col-md-auto text-center">
                         <img
-                          src="https://placehold.co/120x120/0d6efd/ffffff?text=O"
-                          alt="Oliver Thompson"
+                          src={employee.image.url}
+                          alt={employee.image.name}
                           className="profile-picture"
                         />
                       </div>
                       <div className="col-md text-center my-4">
-                        <h4 className="mb-2">Oliver Thompson</h4>
+                        <h4 className="mb-2">{employee.name}</h4>
                       </div>
                     </div>
                   </div>
@@ -84,7 +100,13 @@ const EmployeePage = () => {
                       >
                         Department :{" "}
                       </label>
-                      <p>HR</p>
+                      <p>{employee.department}</p>
+                    </div>
+                    <div className="mb-3">
+                      <label htmlFor="role" className="form-label text-black">
+                        Role :{" "}
+                      </label>
+                      <p>{employee.role}</p>
                     </div>
                   </div>
                 </div>
@@ -104,13 +126,25 @@ const EmployeePage = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Otto</td>
-                      <td>@mdo</td>
-                      <td>pending</td>
-                    </tr>
+                    {employee.task && employee.task.length > 0 ? (
+                      employee.task.map((task, index) => (
+                        <tr key={index}>
+                          <th scope="row">{index + 1}</th>
+                          <td>{task.title}</td>
+                          <td>{task.description}</td>
+                          <td>{task.deadline}</td>
+                          <td className={task.status === "pending" ? "text-danger": "text-success"}>
+                            {task.status}
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td colSpan="5" className="text-center text-muted">
+                          No tasks available.
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </div>

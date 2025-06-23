@@ -27,6 +27,10 @@ const Dashboard = () => {
     width:"150px"
   },
   {
+    name: "Role",
+    selector: (row) => row.role,
+  },
+  {
     name: "Salary",
     selector: (row) => row.salary,
   },

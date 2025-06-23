@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  list: [],
+  list: JSON.parse(localStorage.getItem("employeeList")) || [],
   editIdx: null,
   editData: {},
   error: {},

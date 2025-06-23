@@ -1,7 +1,24 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 const Salary = () => {
+
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  const employeeList = JSON.parse(localStorage.getItem("employeeList")) || [];
+  const employee = employeeList.find(emp => emp.id === user?.id);
+
+  const gross = Number(employee?.salary || 0)
+  + Number(employee?.bonus || 0)
+  + Number(employee?.hra || 0)
+  + Number(employee?.ta || 0)
+  + Number(employee?.da || 0);
+
+const deductions = Number(employee?.pf || 0)
+  + Number(employee?.pt || 0)
+  + Number(employee?.tax || 0);
+
+const net = gross - deductions;
+
   return (
     <>
        <div id="wrapper">
@@ -17,7 +34,7 @@ const Salary = () => {
           </div>
           <div className="list-group list-group-flush">
             <Link
-              to="/"
+              to="/employee"
               className="list-group-item list-group-item-action py-3 ripple active"
             >
               <i className="ti ti-user-circle" /> My Profile
@@ -41,7 +58,7 @@ const Salary = () => {
               >
                 <i className="fas fa-bars" />
               </button>
-              <h4 className="text-black ms-auto py-2">Hello, Akshar</h4>
+              <h4 className="text-black ms-auto py-2">Hello, {employee.name}</h4>
             </div>
           </nav>
           <div className="container-fluid main-content px-4">
@@ -55,20 +72,20 @@ const Salary = () => {
               <div className="col-md-12 border border-2 rounded p-3 ">
                 <h4 className='fw-medium'>Salary & Benefits : </h4>
                 <div className="salary-content mt-3">
-                    <h6>Salary : </h6>
-                    <h6>Bonus : </h6>
-                    <h6>House Rent Allowance (HRA) : </h6>
-                    <h6>Traveling Allowance (TA) : </h6>
-                    <h6>Dearness Allowance (DA) : </h6>
+                    <h6>Salary : {employee.salary}</h6>
+                    <h6>Bonus : {employee.bonus}</h6>
+                    <h6>House Rent Allowance (HRA) : {employee.hra}</h6>
+                    <h6>Traveling Allowance (TA) : {employee.ta}</h6>
+                    <h6>Dearness Allowance (DA) : {employee.da}</h6>
                 </div>
                 <p className='mt-4'>------------ Deductions ---------------</p>
                 <div className="salary-deduct">
-                    <h6>Provident Fund (PF) : </h6>
-                    <h6>Professional Tax (PT) : </h6>
-                    <h6>Tax : </h6>
+                    <h6 className='text-danger'>Provident Fund (PF) : {employee.pf}</h6>
+                    <h6 className='text-danger'>Professional Tax (PT) : {employee.pt}</h6>
+                    <h6 className='text-danger'>Tax : {employee.tax}</h6>
                 </div>
                 <div className="net-salary border-top mt-3 py-2">
-                    <h6>Net salary : 80000</h6>
+                    <h6 className='text-success'>Net salary : {net}</h6>
                 </div>
               </div>
             </div>
