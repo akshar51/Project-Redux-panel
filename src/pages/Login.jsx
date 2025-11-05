@@ -24,7 +24,7 @@ const Login = () => {
         navigate("/employee");
       }
     } else {
-      setError("Invalid credentials. Please check name and role.");
+      setError("Invalid credentials. For manager login enter 'John' and for employee enter 'Mark'. ");
     }
   };
 
