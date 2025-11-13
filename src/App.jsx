@@ -12,6 +12,21 @@ const App = () => {
 
   const employeeList = useSelector((state) => state.employeeData.list);
 
+   useEffect(() => {
+    // Load from localStorage
+    const storedList = JSON.parse(localStorage.getItem("employeeList")) || [];
+
+    // If empty, add default manager and employee
+    if (storedList.length === 0) {
+      const defaultUsers = [
+        { name: "John", role: "manager", email: "john@example.com", salary: 80000 },
+        { name: "Mark", role: "employee", email: "mark@example.com", salary: 40000 }
+      ];
+      localStorage.setItem("employeeList", JSON.stringify(defaultUsers));
+    }
+  }, []);
+
+
   useEffect(() => {
     localStorage.setItem("employeeList", JSON.stringify(employeeList));
   }, [employeeList]);
