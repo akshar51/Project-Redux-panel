@@ -27,9 +27,15 @@ const App = () => {
   }, []);
 
 
+  // useEffect(() => {
+  //   localStorage.setItem("employeeList", JSON.stringify(employeeList));
+  // }, [employeeList]);
+
   useEffect(() => {
+  if (employeeList.length > 0) {
     localStorage.setItem("employeeList", JSON.stringify(employeeList));
-  }, [employeeList]);
+  }
+}, [employeeList]);
 
 
   return (
