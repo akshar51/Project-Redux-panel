@@ -38,6 +38,7 @@ useEffect(() => {
       { name: "John", role: "manager", email: "john@example.com", salary: 80000 },
       { name: "Mark", role: "employee", email: "mark@example.com", salary: 40000 }
     ];
+
     localStorage.setItem("employeeList", JSON.stringify(defaultUsers));
     dispatch(setEmployees(defaultUsers));
   } else {
@@ -46,9 +47,13 @@ useEffect(() => {
 }, []);
 
 
+  // useEffect(() => {
+  //   localStorage.setItem("employeeList", JSON.stringify(employeeList));
+  // }, [employeeList]);
+
   useEffect(() => {
-    localStorage.setItem("employeeList", JSON.stringify(employeeList));
-  }, [employeeList]);
+  localStorage.setItem("employeeList", JSON.stringify(employeeList));
+}, [employeeList]);
 
   
 
