@@ -51,8 +51,11 @@ export const employeeSlice = createSlice({
       state.list[idx].task.push({ ...task });
       }  
     },
+    setEmployees: (state, action) => {
+      state.list = action.payload;
+    },
   },
 });
 
-export const { addEmp, deleteEmp, setEdit, editData, setError, search,addTask } = employeeSlice.actions;
+export const { addEmp, deleteEmp, setEdit, editData, setError, search,addTask,setEmployees } = employeeSlice.actions;
 export default employeeSlice.reducer;
