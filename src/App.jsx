@@ -30,8 +30,6 @@ const App = () => {
   }, []);
 
 
-
-
   useEffect(() => {
     localStorage.setItem("employeeList", JSON.stringify(employeeList));
   }, [employeeList]);
