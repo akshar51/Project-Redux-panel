@@ -15,45 +15,28 @@ const App = () => {
   const dispatch = useDispatch();
   const employeeList = useSelector((state) => state.employeeData.list);
 
-  //  useEffect(() => {
-  //   // Load from localStorage
-  //   const storedList = JSON.parse(localStorage.getItem("employeeList")) || [];
+   useEffect(() => {
+    // Load from localStorage
+    const storedList = JSON.parse(localStorage.getItem("employeeList")) || [];
 
-  //   // If empty, add default manager and employee
-  //   if (storedList.length === 0) {
-  //     const defaultUsers = [
-  //       { name: "John", role: "manager", email: "john@example.com", salary: 80000 },
-  //       { name: "Mark", role: "employee", email: "mark@example.com", salary: 40000 }
-  //     ];
-  //     localStorage.setItem("employeeList", JSON.stringify(defaultUsers));
-  //   }
-  // }, []);
-
-
-useEffect(() => {
-  const storedList = JSON.parse(localStorage.getItem("employeeList"));
-
-  if (!storedList || storedList.length === 0) {
-    const defaultUsers = [
-      { name: "John", role: "manager", email: "john@example.com", salary: 80000 },
-      { name: "Mark", role: "employee", email: "mark@example.com", salary: 40000 }
-    ];
-
-    localStorage.setItem("employeeList", JSON.stringify(defaultUsers));
-    dispatch(setEmployees(defaultUsers));
-  } else {
-    dispatch(setEmployees(storedList));
-  }
-}, []);
+    // If empty, add default manager and employee
+    if (storedList.length === 0) {
+      const defaultUsers = [
+        { name: "John", role: "manager", email: "john@example.com", salary: 80000 },
+        { name: "Mark", role: "employee", email: "mark@example.com", salary: 40000 }
+      ];
+      localStorage.setItem("employeeList", JSON.stringify(defaultUsers));
+    }
+  }, []);
 
 
-  // useEffect(() => {
-  //   localStorage.setItem("employeeList", JSON.stringify(employeeList));
-  // }, [employeeList]);
+
 
   useEffect(() => {
-  localStorage.setItem("employeeList", JSON.stringify(employeeList));
-}, [employeeList]);
+    localStorage.setItem("employeeList", JSON.stringify(employeeList));
+  }, [employeeList]);
+
+  
 
   
 
