@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setEmployees } from "../redux/employeeSlice";
 
 const Login = () => {
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = () => {
+
     const storedList = JSON.parse(localStorage.getItem("employeeList")) || [];
 
     const user = storedList.find(
@@ -27,6 +31,22 @@ const Login = () => {
       setError("Invalid credentials. For manager login enter 'John' and for employee enter 'Mark'. ");
     }
   };
+
+  
+useEffect(() => {
+  const storedList = JSON.parse(localStorage.getItem("employeeList"));
+
+  if (!storedList || storedList.length === 0) {
+    const defaultUsers = [
+      { name: "John", role: "manager", email: "john@example.com", salary: 80000 },
+      { name: "Mark", role: "employee", email: "mark@example.com", salary: 40000 }
+    ];
+    localStorage.setItem("employeeList", JSON.stringify(defaultUsers));
+    dispatch(setEmployees(defaultUsers));
+  } else {
+    dispatch(setEmployees(storedList));
+  }
+}, []);
 
   return (
     <div className="container mt-5">
